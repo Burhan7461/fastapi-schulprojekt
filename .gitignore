@@ -1,0 +1,37 @@
+﻿# 🐍 Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+*.log
+
+# 🔐 Umgebungsvariablen
+.env
+
+# 📦 Paketverwaltung
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# 🧪 Tests & Coverage
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+
+# 🧠 IDE-spezifisch (Visual Studio, VS Code)
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# 📄 Sonstiges
+.DS_Store
+Thumbs.db
+.vs/
