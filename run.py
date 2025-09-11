@@ -1,12 +1,7 @@
 from fastapi import FastAPI
+from starlette.routing import Router
 from config import DATABASE_URL, SECRET_KEY, DEBUG
+from app.api.routes import router
 
 app = FastAPI(debug=DEBUG)
-
-@app.get("/config-check")
-def config_check():
-    return {
-        "database": DATABASE_URL,
-        "secret_key": SECRET_KEY,
-        "debug": DEBUG
-    }
+app.include_router(router)
