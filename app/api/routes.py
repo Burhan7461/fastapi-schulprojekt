@@ -17,6 +17,10 @@ def get_db():
 def get_users(db: Session = Depends(get_db)):
     return db.query(User).all()
 
+@router.get("/news")
+def testtest():
+    return {"Klappt?"}
+
 @router.get("/testen")
 def hello():
     return {"message": "Backend laeuft!"}
