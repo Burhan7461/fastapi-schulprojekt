@@ -14,8 +14,6 @@ class User(Base):
     email = Column(String)
     passwort = Column(String)
 
-    uploads = relationship("DownloadItem", back_populates="uploader")
-
 class Lehrer(Base):
     __tablename__ = "teachers"
     id = Column(Integer, primary_key=True)
@@ -42,7 +40,7 @@ class DownloadItem(Base):
     title = Column(String, nullable=False)
     description = Column(Text, nullable=True)
     author = Column(String, nullable=False)
-    date = Column(DateTime, default=datetime.utcnow, nullable=False)
+    #date = Column(DateTime, default=datetime.utcnow, nullable=False)
     mime_type = Column(String, nullable=False)
 
 class AppointmentItem(Base):

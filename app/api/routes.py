@@ -1,9 +1,10 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from app.db.database import SessionLocal
-from app.models.models import User
+from app.models.models import DownloadItem, User
 from config import DATABASE_URL, SECRET_KEY, DEBUG
 
+# http://127.0.0.1:8000/testen
 router = APIRouter()
 
 def get_db():
@@ -15,7 +16,15 @@ def get_db():
 
 @router.get("/users")
 def get_users(db: Session = Depends(get_db)):
+    print(db.query(User).count())
+    print(db.query(DownloadItem).count())
     return db.query(User).all()
+
+@router.get("/items")
+def get_items(db: Session = Depends(get_db)):
+    print(db.query(User).count())
+    print(db.query(DownloadItem).count())
+    return db.query(DownloadItem).all()
 
 @router.get("/news")
 def testtest():

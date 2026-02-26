@@ -1,11 +1,12 @@
 from app.db.database import SessionLocal, init_db
-from app.models.models import User
+from app.models.models import User, DownloadItem
 
 init_db()
 db = SessionLocal()
 
 # Tabelle leeren
 db.query(User).delete()
+db.query(DownloadItem).delete()
 db.commit()
 
 users = [
@@ -16,6 +17,14 @@ users = [
     User(vorname="Victor", name="Osimhen", email="victorosimhen@example.com", passwort="victorosimhen123"),
 ]
 
+items = [
+    DownloadItem(title="Testitem", description="Testitem", author="Testitem", mime_type="Testitem"),
+    DownloadItem(title="Testitem", description="Testitem", author="Testitem", mime_type="Testitem"),
+]
+
 db.add_all(users)
+db.add_all(items)
 db.commit()
+print(db.query(User).count())
+print(db.query(DownloadItem).count())
 db.close()
