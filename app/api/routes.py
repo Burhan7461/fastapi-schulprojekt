@@ -18,12 +18,14 @@ def get_db():
 def get_users(db: Session = Depends(get_db)):
     print(db.query(User).count())
     print(db.query(DownloadItem).count())
+    print(db.bind.url)
     return db.query(User).all()
 
 @router.get("/items")
 def get_items(db: Session = Depends(get_db)):
     print(db.query(User).count())
     print(db.query(DownloadItem).count())
+    print(db.bind.url)
     return db.query(DownloadItem).all()
 
 @router.get("/news")

@@ -4,7 +4,9 @@ from app.models.models import Base
 from config import DATABASE_URL
 
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
-SessionLocal = sessionmaker(bind=engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-def init_db():
+def init_db(recreate: bool = False):
+    if recreate:
+        Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)

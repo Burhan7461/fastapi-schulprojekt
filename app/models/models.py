@@ -37,11 +37,11 @@ class Fach(Base):
 class DownloadItem(Base):
     __tablename__ = "download_items"
     id = Column(Integer, primary_key=True)
-    title = Column(String, nullable=False)
-    description = Column(Text, nullable=True)
-    author = Column(String, nullable=False)
-    #date = Column(DateTime, default=datetime.utcnow, nullable=False)
-    mime_type = Column(String, nullable=False)
+    title = Column(String)
+    description = Column(Text)
+    author = Column(String)
+    date = Column(DateTime, default=datetime.utcnow, nullable=False)
+    mime_type = Column(String)
 
 class AppointmentItem(Base):
     __tablename__ = "appointment_items"
