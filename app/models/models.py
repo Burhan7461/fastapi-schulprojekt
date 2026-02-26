@@ -41,7 +41,7 @@ class DownloadItem(Base):
     description = Column(Text)
     author = Column(String)
     date = Column(DateTime, default=datetime.utcnow, nullable=False)
-    mime_type = Column(String)
+    type = Column(String)
 
 class AppointmentItem(Base):
     __tablename__ = "appointment_items"

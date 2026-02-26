@@ -1,3 +1,4 @@
+from datetime import datetime
 from app.db.database import SessionLocal, init_db
 from app.models.models import User, DownloadItem
 import traceback
@@ -19,8 +20,9 @@ users = [
 ]
 
 items = [
-    DownloadItem(title="Testitem", description="Testitem", author="Testitem", mime_type="Testitem"),
-    DownloadItem(title="Testitem", description="Testitem", author="Testitem", mime_type="Testitem"),
+    DownloadItem(title="Testitem", description="Testitem", author="Testitem", date=datetime.utcnow(), type="Formulare"),
+    DownloadItem(title="Testitem", description="Testitem", author="Testitem", date=datetime.utcnow(), type="Formulare"),
+    DownloadItem(title="Testitem", description="Testitem", author="Testitem", date=datetime.utcnow(), type="Formulare"),
 ]
 
 print("Before add_all - new:", [type(o).__name__ for o in db.new])
@@ -40,6 +42,6 @@ except Exception:
 print("Counts after commit -> Users:", db.query(User).count(), "Items:", db.query(DownloadItem).count())
 # Show raw rows for troubleshooting
 print("Users rows:", [ (u.id, u.vorname, u.email) for u in db.query(User).all() ])
-print("Items rows:", [ (i.id, i.title, i.author, i.mime_type) for i in db.query(DownloadItem).all() ])
+print("Items rows:", [ (i.id, i.title, i.author, i.type, i.date) for i in db.query(DownloadItem).all() ])
 
 db.close()
