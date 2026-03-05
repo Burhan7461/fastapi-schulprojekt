@@ -14,26 +14,6 @@ class User(Base):
     email = Column(String)
     passwort = Column(String)
 
-class Lehrer(Base):
-    __tablename__ = "teachers"
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-
-class Klasse(Base):
-    __tablename__ = "classes"
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-
-class Raum(Base):
-    __tablename__ = "rooms"
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-
-class Fach(Base):
-    __tablename__ = "subjects"
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-
 class DownloadItem(Base):
     __tablename__ = "download_items"
     id = Column(Integer, primary_key=True)
@@ -46,21 +26,21 @@ class DownloadItem(Base):
 class AppointmentItem(Base):
     __tablename__ = "appointment_items"
     id = Column(Integer, primary_key=True)
-    title = Column(String, nullable=False)
-    description = Column(String, nullable=False)
+    title = Column(String)
+    description = Column(String)
     date = Column(DateTime, default=datetime.utcnow, nullable=False)
-    location = Column(String, nullable=False)
-    mime_type = Column(String, nullable=False)
-    is_past = Column(Boolean, default=False)
+    location = Column(String)
+    mime_type = Column(String)
+    is_past = Column(Boolean)
 
 class NewsItem(Base):
     __tablename__ = "news_items"
     id = Column(Integer, primary_key=True)
-    title = Column(String, nullable=False)
-    content = Column(Text, nullable=True)
-    author = Column(String, nullable=False)
+    title = Column(String)
+    content = Column(Text)
+    author = Column(String)
     time = Column(DateTime, default=datetime.utcnow, nullable=False)
-    tags = Column(Text, nullable=True)
-    is_important = Column(Boolean, default=False)
-    is_urgent = Column(Boolean, default=False)
-    type = Column(String, nullable=False)
+    tags = Column(Text)
+    is_important = Column(Boolean)
+    is_urgent = Column(Boolean)
+    type = Column(String)

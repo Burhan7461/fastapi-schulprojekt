@@ -28,18 +28,6 @@ def get_items(db: Session = Depends(get_db)):
     print(db.bind.url)
     return db.query(DownloadItem).all()
 
-@router.get("/news")
-def testtest():
-    return {"Klappt?"}
-
 @router.get("/testen")
-def hello():
+def testen():
     return {"message": "Backend laeuft!"}
-
-@router.get("/config-check")
-def config_check():
-    return {
-        "database": DATABASE_URL,
-        "secret_key": SECRET_KEY,
-        "debug": DEBUG
-    }
