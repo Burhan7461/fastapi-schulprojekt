@@ -1,6 +1,6 @@
 from datetime import datetime
 from os import name
-from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String, Text
+from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String, Text, JSON
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -30,7 +30,11 @@ class AppointmentItem(Base):
     description = Column(String)
     date = Column(DateTime, default=datetime.utcnow, nullable=False)
     location = Column(String)
-    mime_type = Column(String)
+    type = Column(String)
+    startDate = Column(DateTime, default=datetime.utcnow, nullable=False)
+    endDate = Column(DateTime, default=datetime.utcnow, nullable=False)
+    startTime = Column(DateTime, default=datetime.utcnow, nullable=False)
+    endTime = Column(DateTime, default=datetime.utcnow, nullable=False)
     is_past = Column(Boolean)
 
 class NewsItem(Base):
@@ -40,7 +44,7 @@ class NewsItem(Base):
     content = Column(Text)
     author = Column(String)
     time = Column(DateTime, default=datetime.utcnow, nullable=False)
-    tags = Column(Text)
+    tags = Column(JSON, default=list, nullable=True)
     is_important = Column(Boolean)
     is_urgent = Column(Boolean)
     type = Column(String)
