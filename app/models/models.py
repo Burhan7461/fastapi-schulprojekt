@@ -1,6 +1,8 @@
+from datetime import datetime
 from os import name
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
@@ -12,22 +14,33 @@ class User(Base):
     email = Column(String)
     passwort = Column(String)
 
-class Lehrer(Base):
-    __tablename__ = "teachers"
+class DownloadItem(Base):
+    __tablename__ = "download_items"
     id = Column(Integer, primary_key=True)
-    name = Column(String)
+    title = Column(String)
+    description = Column(Text)
+    author = Column(String)
+    date = Column(DateTime, default=datetime.utcnow, nullable=False)
+    type = Column(String)
 
-class Klasse(Base):
-    __tablename__ = "classes"
+class AppointmentItem(Base):
+    __tablename__ = "appointment_items"
     id = Column(Integer, primary_key=True)
-    name = Column(String)
+    title = Column(String)
+    description = Column(String)
+    date = Column(DateTime, default=datetime.utcnow, nullable=False)
+    location = Column(String)
+    mime_type = Column(String)
+    is_past = Column(Boolean)
 
-class Raum(Base):
-    __tablename__ = "rooms"
+class NewsItem(Base):
+    __tablename__ = "news_items"
     id = Column(Integer, primary_key=True)
-    name = Column(String)
-
-class Fach(Base):
-    __tablename__ = "subjects"
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
+    title = Column(String)
+    content = Column(Text)
+    author = Column(String)
+    time = Column(DateTime, default=datetime.utcnow, nullable=False)
+    tags = Column(Text)
+    is_important = Column(Boolean)
+    is_urgent = Column(Boolean)
+    type = Column(String)

@@ -1,11 +1,14 @@
+from datetime import datetime
 from app.db.database import SessionLocal, init_db
-from app.models.models import User
+from app.models.models import User, DownloadItem
+import traceback
 
 init_db()
 db = SessionLocal()
 
 # Tabelle leeren
 db.query(User).delete()
+db.query(DownloadItem).delete()
 db.commit()
 
 users = [
@@ -16,6 +19,29 @@ users = [
     User(vorname="Victor", name="Osimhen", email="victorosimhen@example.com", passwort="victorosimhen123"),
 ]
 
+items = [
+    DownloadItem(title="Testitem", description="Testitem", author="Testitem", date=datetime.utcnow(), type="Formulare"),
+    DownloadItem(title="Testitem", description="Testitem", author="Testitem", date=datetime.utcnow(), type="Formulare"),
+    DownloadItem(title="Testitem", description="Testitem", author="Testitem", date=datetime.utcnow(), type="Formulare"),
+]
+
+print("Before add_all - new:", [type(o).__name__ for o in db.new])
 db.add_all(users)
-db.commit()
+print("After add users - new:", [type(o).__name__ for o in db.new])
+db.add_all(items)
+print("After add items - new:", [type(o).__name__ for o in db.new])
+
+try:
+    db.commit()
+    print("Commit succeeded")
+except Exception:
+    print("Commit failed:")
+    traceback.print_exc()
+    db.rollback()
+
+print("Counts after commit -> Users:", db.query(User).count(), "Items:", db.query(DownloadItem).count())
+# Show raw rows for troubleshooting
+print("Users rows:", [ (u.id, u.vorname, u.email) for u in db.query(User).all() ])
+print("Items rows:", [ (i.id, i.title, i.author, i.type, i.date) for i in db.query(DownloadItem).all() ])
+
 db.close()
