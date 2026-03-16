@@ -26,6 +26,7 @@
     <Compile Include="app\api\routes.py" />
     <Compile Include="app\db\database.py" />
     <Compile Include="app\models\models.py" />
+    <Compile Include="app\schemas\schemas.py" />
     <Compile Include="config.py" />
     <Compile Include="run.py" />
     <Compile Include="seed.py" />
@@ -35,6 +36,7 @@
     <Folder Include="app\api\" />
     <Folder Include="app\models\" />
     <Folder Include="app\db\" />
+    <Folder Include="app\schemas\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".env" />
